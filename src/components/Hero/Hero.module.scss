@@ -1,0 +1,158 @@
+@import '@/styles/variables.scss';
+
+.hero {
+  padding: 1rem 0 4rem;
+  background: linear-gradient(135deg, rgba($primary-color, 0.1) 0%, $light-color 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($primary-color, 0.05) 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  &Content {
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    position: relative;
+    z-index: 1;
+  }
+
+  &Text {
+    flex: 1;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  &Image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1s ease-out;
+  }
+
+  &Title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: $spacing-md;
+    color: $dark-color;
+    line-height: 1.2;
+  }
+
+  &Subtitle {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 600;
+    margin-bottom: $spacing-lg;
+    color: $primary-color;
+  }
+
+  &Description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    margin-bottom: $spacing-xl;
+    color: $dark-color;
+    max-width: 600px;
+    opacity: 0.9;
+  }
+
+  &Buttons {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+}
+
+.imagePlaceholder {
+  width: clamp(250px, 30vw, 350px);
+  height: clamp(250px, 30vw, 350px);
+  border-radius: 50%;
+  background-color: $gray-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+  border: 8px solid rgba($primary-color, 0.1);
+}
+
+/* Mobile-first responsive styles */
+@media (max-width: $breakpoint-lg) {
+  .hero {
+    padding: $spacing-xl 0;
+    min-height: auto;
+    padding-bottom: $spacing-xxl;
+
+    &Content {
+      flex-direction: column;
+      text-align: center;
+      gap: $spacing-xl;
+    }
+
+    &Description {
+      margin: 0 auto $spacing-xl;
+    }
+
+    &Buttons {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .hero {
+    padding: $spacing-lg 0 $spacing-xl;
+
+    &Title {
+      font-size: 2.25rem;
+    }
+
+    &Subtitle {
+      margin-bottom: $spacing-md;
+    }
+
+    &Buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-sm;
+    }
+  }
+
+  .imagePlaceholder {
+    width: 220px;
+    height: 220px;
+    border-width: 6px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
