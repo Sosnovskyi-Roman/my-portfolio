@@ -27,7 +27,7 @@ $border-radius-sm: 0.375rem; // 6px
 $border-radius-md: 0.5rem; // 8px
 $border-radius-lg: 0.75rem; // 12px
 $border-radius-xl: 1rem; // 16px
-$border-radius-full: 9999px; // For full rounded elements
+$border-radius-full: 9999px;
 
 // Transitions
 $transition-fast: all 0.15s ease;
@@ -45,3 +45,5 @@ $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
+
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);

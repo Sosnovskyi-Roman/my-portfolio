@@ -23,7 +23,6 @@
     transform: translateY(0);
   }
 
-  // Variants
   &.primary {
     background-color: $primary-color;
     color: white;
@@ -54,7 +53,6 @@
     }
   }
 
-  // Sizes
   &.sm {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
