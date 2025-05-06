@@ -5,11 +5,40 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-export const Hero = () => {
+interface HeroProps {
+  name: string;
+  position: string;
+  description: string;
+  cvPath: string;
+  avatarPath: string;
+  highlightedWords?: string[];
+}
+
+export const Hero = ({
+  name = 'Roman Sosnovskyi',
+  position = 'Frontend Developer',
+  description = 'I build exceptional digital experiences with focus on performance, accessibility and cutting-edge technologies.',
+  cvPath = '/RomanSosnovskyi_CV.pdf',
+  avatarPath = '/images/avatar.jpeg',
+  highlightedWords = ['exceptional', 'performance', 'accessibility'],
+}: HeroProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+
+  const formatDescription = (text: string, highlights: string[]) => {
+    return text.split(' ').map((word, i) => {
+      const cleanWord = word.replace(/[^a-zA-Z]/g, '');
+      return highlights.includes(cleanWord.toLowerCase()) ? (
+        <span key={i} className={styles.highlight}>
+          {word}{' '}
+        </span>
+      ) : (
+        <span key={i}>{word} </span>
+      );
+    });
+  };
 
   return (
     <section className={styles.hero} id='home' ref={ref}>
@@ -26,7 +55,7 @@ export const Hero = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Roman Sosnovskyi
+              {name}
             </motion.span>
           </h1>
           <h2 className={styles.heroSubtitle}>
@@ -35,7 +64,7 @@ export const Hero = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Frontend Developer
+              {position}
             </motion.span>
           </h2>
           <motion.p
@@ -44,9 +73,7 @@ export const Hero = () => {
             animate={inView ? { opacity: 0.9 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            I build <span className={styles.highlight}>exceptional</span> digital experiences with
-            focus on <span className={styles.highlight}>performance</span>,{' '}
-            <span className={styles.highlight}>accessibility</span> and cutting-edge technologies.
+            {formatDescription(description, highlightedWords)}
           </motion.p>
           <motion.div
             className={styles.heroButtons}
@@ -54,7 +81,7 @@ export const Hero = () => {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Button href='/RomanSosnovskyi_CV.pdf' download variant='primary' size='lg'>
+            <Button href={cvPath} download variant='primary' size='lg'>
               Download CV
             </Button>
             <Button href='#contact' variant='secondary' size='lg'>
@@ -71,8 +98,8 @@ export const Hero = () => {
         >
           <div className={styles.imageWrapper}>
             <Image
-              src='/images/avatar.jpeg'
-              alt='Roman Sosnovskyi - Frontend Developer'
+              src={avatarPath}
+              alt={`${name} - ${position}`}
               width={350}
               height={350}
               priority
