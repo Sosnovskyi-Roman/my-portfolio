@@ -1,0 +1,174 @@
+@use '@/styles/variables' as *;
+
+.projects {
+  padding: $spacing-xxl 0;
+  background-color: $light-color;
+}
+
+.sectionContainer {
+  max-width: $breakpoint-xl;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: $spacing-xxl;
+  color: $dark-color;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -$spacing-md;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, $primary-hover);
+    border-radius: 2px;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  justify-content: center;
+  margin-bottom: $spacing-xl;
+}
+
+.filterButton {
+  padding: $spacing-xs $spacing-md;
+  background: none;
+  border: 1px solid rgba($primary-color, 0.2);
+  border-radius: $border-radius-full;
+  color: $dark-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+
+  &.active {
+    background: $primary-color;
+    color: $white;
+    border-color: $primary-color;
+  }
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-xl;
+}
+
+.projectCard {
+  background: $white;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.projectImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  .image {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover .image {
+    transform: scale(1.05);
+  }
+}
+
+.projectContent {
+  padding: $spacing-md;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: $spacing-xs;
+  color: $dark-color;
+}
+
+.projectDescription {
+  color: rgba($dark-color, 0.8);
+  margin-bottom: $spacing-md;
+  flex: 1;
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+}
+
+.tag {
+  background: rgba($primary-color, 0.1);
+  color: $primary-color;
+  padding: 0.25rem $spacing-sm;
+  border-radius: $border-radius-full;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.projectLinks {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: auto;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-hover;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .projects {
+    padding: $spacing-xl 0;
+  }
+
+  .sectionTitle {
+    margin-bottom: $spacing-xl;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
