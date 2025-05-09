@@ -84,7 +84,13 @@ export const Hero = ({
             <Button href={cvPath} download variant='primary' size='lg'>
               Download CV
             </Button>
-            <Button href='#contact' variant='secondary' size='lg'>
+            <Button
+              href='#contact'
+              variant='secondary'
+              size='lg'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Contact Me
             </Button>
           </motion.div>
