@@ -1,0 +1,232 @@
+@import '../../styles/variables';
+
+.contact {
+  padding: $spacing-xxl 0;
+  background-color: $white;
+
+  &Container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 0 $spacing-md;
+    }
+  }
+
+  &Header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    @media (max-width: $breakpoint-md) {
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &Title {
+    font-size: $font-xxl;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: $spacing-sm;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: $font-xl;
+    }
+  }
+
+  &Subtitle {
+    font-size: $font-lg;
+    color: lighten($dark-color, 20%);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: $font-base;
+      padding: 0 $spacing-sm;
+    }
+  }
+
+  &Content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  &Form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &Info {
+    background-color: $gray-light;
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    height: fit-content;
+
+    @media (max-width: $breakpoint-md) {
+      padding: $spacing-lg;
+    }
+  }
+}
+
+.form {
+  &Group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &Label {
+    font-weight: 600;
+    color: $dark-color;
+    font-size: $font-base;
+  }
+
+  &Input,
+  &Textarea {
+    padding: $spacing-sm;
+    border: 1px solid $gray-light;
+    border-radius: $border-radius-sm;
+    font-size: $font-base;
+    transition: $transition;
+    background-color: $white;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+  }
+
+  &Textarea {
+    resize: vertical;
+    min-height: 150px;
+
+    @media (max-width: $breakpoint-md) {
+      min-height: 120px;
+    }
+  }
+
+  &Submit {
+    margin-top: $spacing-sm;
+  }
+
+  &Success,
+  &Error {
+    padding: $spacing-sm;
+    border-radius: $border-radius-sm;
+    text-align: center;
+    margin-top: $spacing-sm;
+    font-size: $font-base;
+  }
+
+  &Success {
+    color: #10b981;
+    background-color: rgba(#10b981, 0.1);
+  }
+
+  &Error {
+    color: #ef4444;
+    background-color: rgba(#ef4444, 0.1);
+  }
+}
+
+.info {
+  &Title {
+    font-size: $font-xl;
+    margin-bottom: $spacing-lg;
+    color: $dark-color;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: $font-lg;
+    }
+  }
+
+  &List {
+    list-style: none;
+    padding: 0;
+    margin-bottom: $spacing-xl;
+
+    @media (max-width: $breakpoint-md) {
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &Item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: $primary-color;
+  }
+
+  &Link {
+    color: $dark-color;
+    text-decoration: none;
+    transition: $transition;
+    font-size: $font-base;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
+  margin-top: $spacing-xxl;
+
+  @media (max-width: $breakpoint-md) {
+    margin-top: $spacing-lg;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: $dark-color;
+    text-decoration: none;
+    transition: $transition;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-base;
+
+    &:hover {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.05);
+
+      svg {
+        color: $primary-color;
+      }
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: $transition;
+    }
+  }
+}

@@ -13,6 +13,9 @@ interface ButtonProps {
   download?: boolean;
   onClick?: () => void;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  rel?: string;
 }
 
 export const Button = ({
