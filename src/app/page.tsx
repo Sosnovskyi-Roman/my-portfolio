@@ -11,10 +11,10 @@ export default function Home() {
       <Hero
         name='Roman Sosnovskyi'
         position='Frontend Developer'
-        description='I create high-quality web applications with focus on usability, performance and modern technologies.'
+        description='I build fast, modern, and user-friendly websites that people love.'
         cvPath='/documents/Roman_Sosnovskyi_CV.pdf'
         avatarPath='/images/avatar.jpeg'
-        highlightedWords={['high-quality', 'usability', 'performance']}
+        highlightedWords={['modern']}
       />
       <About />
       <Skills />

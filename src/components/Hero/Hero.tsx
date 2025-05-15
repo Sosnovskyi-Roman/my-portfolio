@@ -4,23 +4,15 @@ import { Button } from '../Button/Button';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-interface HeroProps {
-  name: string;
-  position: string;
-  description: string;
-  cvPath: string;
-  avatarPath: string;
-  highlightedWords?: string[];
-}
+import { HeroProps } from './types/Hero.types';
 
 export const Hero = ({
-  name = 'Roman Sosnovskyi',
-  position = 'Frontend Developer',
-  description = 'I build exceptional digital experiences with focus on performance, accessibility and cutting-edge technologies.',
-  cvPath = '/RomanSosnovskyi_CV.pdf',
-  avatarPath = '/images/avatar.jpeg',
-  highlightedWords = ['exceptional', 'performance', 'accessibility'],
+  name,
+  position,
+  description = '',
+  cvPath,
+  avatarPath,
+  highlightedWords = ['modern'],
 }: HeroProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -84,13 +76,7 @@ export const Hero = ({
             <Button href={cvPath} download variant='primary' size='lg'>
               Download CV
             </Button>
-            <Button
-              href='#contact'
-              variant='secondary'
-              size='lg'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
+            <Button href='#contact' variant='secondary' size='lg'>
               Contact Me
             </Button>
           </motion.div>
