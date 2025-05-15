@@ -1,7 +1,7 @@
 'use client';
 import styles from './Skills.module.scss';
 import { FaReact, FaNodeJs, FaGitAlt } from 'react-icons/fa';
-import { SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript } from 'react-icons/si';
 
 interface Skill {
   name: string;
@@ -11,6 +11,16 @@ interface Skill {
 
 export const Skills = () => {
   const skills: Skill[] = [
+    {
+      name: 'JavaScript',
+      level: 85,
+      icon: <SiJavascript className={styles.skillIcon} />,
+    },
+    {
+      name: 'TypeScript',
+      level: 80,
+      icon: <SiTypescript className={styles.skillIcon} />,
+    },
     {
       name: 'React',
       level: 90,
@@ -22,19 +32,14 @@ export const Skills = () => {
       icon: <SiNextdotjs className={styles.skillIcon} />,
     },
     {
-      name: 'TypeScript',
-      level: 80,
-      icon: <SiTypescript className={styles.skillIcon} />,
+      name: 'Node.js',
+      level: 70,
+      icon: <FaNodeJs className={styles.skillIcon} />,
     },
     {
       name: 'Tailwind CSS',
       level: 75,
       icon: <SiTailwindcss className={styles.skillIcon} />,
-    },
-    {
-      name: 'Node.js',
-      level: 70,
-      icon: <FaNodeJs className={styles.skillIcon} />,
     },
     {
       name: 'Git',
@@ -46,7 +51,7 @@ export const Skills = () => {
   return (
     <section className={styles.skills} id='skills'>
       <div className={styles.sectionContainer}>
-        <h3 className={styles.sectionTitle}>My Tech Stack</h3>
+        <h3 className={styles.sectionTitle}>My Tech Stack</h3>{' '}
         <div className={styles.skillsGrid}>
           {skills.map((skill) => (
             <div key={skill.name} className={styles.skillCard}>
@@ -58,7 +63,11 @@ export const Skills = () => {
                 </div>
               </div>
               <div className={styles.skillBar}>
-                <div className={styles.skillProgress} style={{ width: `${skill.level}%` }}></div>
+                <div
+                  className={styles.skillProgress}
+                  style={{ width: `${skill.level}%` }}
+                  aria-label={`${skill.level}% proficiency in ${skill.name}`}
+                ></div>
               </div>
             </div>
           ))}
