@@ -1,10 +1,5 @@
-// Variables
-$primary-color: #2563eb;
-$dark-color: #1e293b;
-$light-color: #f8fafc;
-$transition: all 0.3s ease;
+@use '@/styles/variables' as *;
 
-// Base styles
 .container {
   min-height: 100vh;
   display: flex;
