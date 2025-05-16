@@ -10,10 +10,10 @@ export const About = () => {
   });
 
   const stats = [
-    { number: '3+', label: 'Years Experience' },
-    { number: '20+', label: 'Projects Completed' },
-    { number: '15+', label: 'Happy Clients' },
-    { number: '5', label: 'Tech Specialties' },
+    { number: '1+', label: 'Years Experience' },
+    { number: '10+', label: 'Projects Completed' },
+    { number: '10+', label: 'Happy Clients' },
+    { number: '10', label: 'Tech Specialties' },
   ];
 
   return (
@@ -36,18 +36,16 @@ export const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              Hello! I&apos;m <span className={styles.highlight}>Roman</span>, a passionate frontend
-              developer with expertise in modern web technologies.
+              Hi there! I&apos;m <span className={styles.highlight}>Roman</span>, a frontend
+              developer who loves building modern websites and apps.
             </p>
             <p>
-              I specialize in building <span className={styles.highlight}>high-performance</span>,{' '}
-              <span className={styles.highlight}>accessible</span>, and{' '}
-              <span className={styles.highlight}>responsive</span> web applications using
-              cutting-edge tools like React, Next.js, and TypeScript.
+              I focus on creating interfaces that people enjoy using. My toolkit includes React,
+              Next.js and TypeScript.
             </p>
             <p>
-              My approach combines technical excellence with attention to detail, ensuring
-              pixel-perfect implementations and smooth user experiences across all devices.
+              I believe a good website should be fast, intuitive and pleasant to use - that&apos;s
+              what I aim for in every project.
             </p>
           </motion.div>
 
