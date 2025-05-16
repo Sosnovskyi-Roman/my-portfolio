@@ -3,18 +3,7 @@ import styles from './Projects.module.scss';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-
-type ProjectCardProps = {
-  project: {
-    title: string;
-    description: string;
-    tags: string[];
-    image: string;
-    githubUrl?: string;
-    liveUrl?: string;
-  };
-  index: number;
-};
+import { ProjectCardProps } from './types/Projects.types';
 
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   return (

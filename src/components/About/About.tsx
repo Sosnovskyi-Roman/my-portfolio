@@ -13,7 +13,7 @@ export const About = () => {
     { number: '1+', label: 'Years Experience' },
     { number: '10+', label: 'Projects Completed' },
     { number: '10+', label: 'Happy Clients' },
-    { number: '5', label: 'Tech Specialties' },
+    { number: '10', label: 'Tech Specialties' },
   ];
 
   return (

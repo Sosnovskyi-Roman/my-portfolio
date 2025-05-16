@@ -4,16 +4,7 @@ import { ProjectCard } from './ProjectCard';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  image: string;
-  githubUrl?: string;
-  liveUrl?: string;
-};
+import { Project } from './types/Projects.types';
 
 export const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -25,21 +16,23 @@ export const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      description: 'Full-featured online store with cart and payment integration',
-      tags: ['React', 'Node.js', 'MongoDB'],
-      image: '/projects/project.png',
-      githubUrl: 'https://github.com/yourusername/ecommerce',
-      liveUrl: 'https://ecommerce-demo.com',
+      title: 'Reco Hair Expert',
+      description:
+        'Full-stack e-commerce platform for professional hair products with Next.js SSR, MongoDB inventory management, and secure checkout.',
+      tags: ['Next.js', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'E-commerce'],
+      image: '/projects/Reco.png',
+      githubUrl: 'https://github.com/reco-hair-expert/reco-frontend',
+      liveUrl: 'https://www.hairexpertreco.com/',
     },
     {
       id: 2,
-      title: 'Portfolio Website',
-      description: 'Modern portfolio built with Next.js and TypeScript',
-      tags: ['Next.js', 'TypeScript', 'Tailwind'],
-      image: '/projects/project.png',
-      githubUrl: 'https://github.com/yourusername/portfolio',
-      liveUrl: 'https://yourportfolio.com',
+      title: 'Message App',
+      description:
+        'Real-time messaging application with CRUD functionality, built with React, Node.js, and MongoDB. Features ShadCN UI and RTK Query.',
+      tags: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'ShadCN'],
+      image: '/projects/Reco.png',
+      githubUrl: 'https://github.com/Sosnovskyi-Roman/message-app',
+      liveUrl: '',
     },
   ];
 
