@@ -194,39 +194,67 @@
 .socialLinks {
   display: flex;
   flex-direction: row;
-  gap: $spacing-sm;
-  margin-top: $spacing-xxl;
-
-  @media (max-width: $breakpoint-md) {
-    margin-top: $spacing-lg;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  gap: 8px;
+  margin-top: 48px;
 
   a {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
-    color: $dark-color;
+    gap: 4px;
+    color: #2b2d42;
     text-decoration: none;
-    transition: $transition;
-    padding: $spacing-xs $spacing-sm;
-    border-radius: $border-radius-sm;
-    font-size: $font-base;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 16px;
 
     &:hover {
-      color: $primary-color;
-      background-color: rgba($primary-color, 0.05);
+      color: #4361ee;
+      background-color: rgba(67, 97, 238, 0.05);
 
       svg {
-        color: $primary-color;
+        color: #4361ee;
+        transform: translateY(-2px);
       }
     }
 
     svg {
       width: 20px;
       height: 20px;
-      transition: $transition;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    a {
+      padding: 4px;
+      font-size: 14px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    gap: 6px;
+
+    a {
+      flex-direction: column;
+      text-align: center;
+      padding: 4px;
+      font-size: 12px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }

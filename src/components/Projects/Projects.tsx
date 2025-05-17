@@ -30,7 +30,7 @@ export const Projects = () => {
       description:
         'Real-time messaging application with CRUD functionality, built with React, Node.js, and MongoDB. Features ShadCN UI and RTK Query.',
       tags: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'ShadCN'],
-      image: '/projects/Reco.png',
+      image: '/projects/message-app.png',
       githubUrl: 'https://github.com/Sosnovskyi-Roman/message-app',
       liveUrl: '',
     },
