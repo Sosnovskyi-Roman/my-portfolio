@@ -16,15 +16,25 @@ export const ScrollToTopButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    // Додаємо трошки throttle для оптимізації
+    const throttledToggleVisibility = () => {
+      let ticking = false;
+      return () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            toggleVisibility();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+    };
+
+    window.addEventListener('scroll', throttledToggleVisibility());
+    return () => window.removeEventListener('scroll', throttledToggleVisibility());
   }, []);
 
   return (
@@ -32,6 +42,8 @@ export const ScrollToTopButton = () => {
       className={`${styles.backToTop} ${isVisible ? styles.visible : ''}`}
       onClick={scrollToTop}
       aria-label='Scroll to top'
+      aria-hidden={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
     >
       <ArrowUpIcon />
     </button>
