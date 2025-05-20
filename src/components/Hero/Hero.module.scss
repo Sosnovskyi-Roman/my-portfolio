@@ -1,7 +1,7 @@
 @use '@/styles/variables' as *;
 
 .hero {
-  --hero-padding-y: #{$spacing-xxl};
+  --hero-padding-y: #{4rem};
 
   padding: var(--hero-padding-y) 0;
   background: linear-gradient(135deg, rgba($primary-color, 0.08) 0%, rgba($light-color, 0.95) 100%);
@@ -28,11 +28,11 @@
 .heroContent {
   max-width: min($breakpoint-xl, 90%);
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
-  gap: $spacing-xxl;
+  gap: 4rem;
   position: relative;
 }
 
@@ -109,8 +109,8 @@
 
 .heroButtons {
   display: flex;
-  gap: $spacing-md;
-  margin-top: $spacing-md;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
@@ -155,14 +155,14 @@
 
 @media (max-width: $breakpoint-lg) {
   .hero {
-    --hero-padding-y: #{$spacing-xl};
+    --hero-padding-y: #{3rem};
     min-height: auto;
-    padding-bottom: $spacing-xxl;
+    padding-bottom: 4rem;
     text-align: center;
 
     &Content {
       grid-template-columns: 1fr;
-      gap: $spacing-xl;
+      gap: 3rem;
     }
 
     &Subtitle::after {
@@ -178,7 +178,7 @@
 
 @media (max-width: $breakpoint-md) {
   .hero {
-    --hero-padding-y: #{$spacing-lg};
+    --hero-padding-y: #{2rem};
 
     &Title {
       font-size: clamp(2rem, 6vw, 2.5rem);
@@ -187,7 +187,7 @@
     &Buttons {
       flex-direction: column;
       align-items: center;
-      gap: $spacing-sm;
+      gap: 1rem;
     }
   }
 

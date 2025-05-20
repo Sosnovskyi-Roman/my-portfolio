@@ -1,28 +1,28 @@
 @use '@/styles/variables' as *;
 
 .projects {
-  padding: $spacing-xxl 0;
+  padding: 4rem 0;
   background-color: $light-color;
 }
 
 .sectionContainer {
   max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0 1.5rem;
 }
 
 .sectionTitle {
   font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: 800;
   text-align: center;
-  margin-bottom: $spacing-xxl;
+  margin-bottom: 4rem;
   color: $dark-color;
   position: relative;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -$spacing-md;
+    bottom: -1.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -35,16 +35,16 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-sm;
+  gap: 0.5rem;
   justify-content: center;
-  margin-bottom: $spacing-xl;
+  margin-bottom: 3rem;
 }
 
 .filterButton {
-  padding: $spacing-xs $spacing-md;
+  padding: 0.5rem 1.5rem;
   background: none;
   border: 1px solid rgba($primary-color, 0.2);
-  border-radius: $border-radius-full;
+  border-radius: 9999px;
   color: $dark-color;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -64,12 +64,12 @@
 .projectsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: $spacing-xl;
+  gap: 3rem;
 }
 
 .projectCard {
   background: $white;
-  border-radius: $border-radius-lg;
+  border-radius: -0.75rem;
   overflow: hidden;
   box-shadow: $shadow-sm;
   transition: all 0.3s ease;
@@ -98,7 +98,7 @@
 }
 
 .projectContent {
-  padding: $spacing-md;
+  padding: 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -107,42 +107,42 @@
 .projectTitle {
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: $spacing-xs;
+  margin-bottom: 0.5rem;
   color: $dark-color;
 }
 
 .projectDescription {
   color: rgba($dark-color, 0.8);
-  margin-bottom: $spacing-md;
+  margin-bottom: 1.5rem;
   flex: 1;
 }
 
 .projectTags {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-xs;
-  margin-bottom: $spacing-md;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .tag {
   background: rgba($primary-color, 0.1);
   color: $primary-color;
-  padding: 0.25rem $spacing-sm;
-  border-radius: $border-radius-full;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
 }
 
 .projectLinks {
   display: flex;
-  gap: $spacing-md;
+  gap: 1.5rem;
   margin-top: auto;
 }
 
 .link {
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
+  gap: 0.5rem;
   color: $primary-color;
   text-decoration: none;
   font-weight: 500;
@@ -160,15 +160,74 @@
 
 @media (max-width: $breakpoint-md) {
   .projects {
-    padding: $spacing-xl 0;
+    padding: 3rem 0;
   }
 
   .sectionTitle {
-    margin-bottom: $spacing-xl;
+    margin-bottom: 3rem;
   }
 
   .projectsGrid {
     grid-template-columns: 1fr;
-    gap: $spacing-lg;
+    gap: 2rem;
+  }
+}
+
+.imageModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($dark-color, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+  padding: 3rem;
+
+  .modalContent {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 80vh;
+    background: $white;
+    border-radius: -0.75rem;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: $dark-color;
+    color: $white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: $primary-hover;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .imageModal {
+    padding: 1.5rem;
+
+    .modalContent {
+      height: 60vh;
+    }
   }
 }

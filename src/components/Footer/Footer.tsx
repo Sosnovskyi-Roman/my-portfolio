@@ -12,11 +12,15 @@ export const Footer = () => {
         </p>
 
         <div className={styles.socialLinks}>
-          <Link href='https://github.com/yourusername' target='_blank' rel='noopener noreferrer'>
+          <Link
+            href='https://github.com/Sosnovskyi-Roman'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <GitHubLogoIcon /> GitHub
           </Link>
           <Link
-            href='https://linkedin.com/in/yourprofile'
+            href='https://www.linkedin.com/in/roman-sosnovskyi-86743229a/'
             target='_blank'
             rel='noopener noreferrer'
           >

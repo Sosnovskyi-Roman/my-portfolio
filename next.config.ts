@@ -1,10 +1,16 @@
+import path from 'path';
+
 const nextConfig = {
   sassOptions: {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    includePaths: [require('path').join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 };
 

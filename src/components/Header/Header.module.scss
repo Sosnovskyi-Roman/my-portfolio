@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '@/styles/variables' as *;
 
 .header {
@@ -19,7 +20,7 @@
 .headerWrapper {
   max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +36,8 @@
   z-index: 1001;
 
   &:hover {
-    color: darken($primary-color, 10%);
+    color: color.adjust($primary-color, $lightness: -10%);
+    /* Альтернативний варіант: color.scale($primary-color, $lightness: -10%) */
   }
 }
 
@@ -49,7 +51,7 @@
   width: 2.5rem;
   height: 2.5rem;
   padding: 0.5rem;
-  border-radius: $border-radius-sm;
+  border-radius: 0.25rem;
   transition: all 0.3s ease;
 
   &:hover {
@@ -65,7 +67,7 @@
 
 .nav {
   display: flex;
-  gap: $spacing-md;
+  gap: 1.5rem;
 
   a {
     color: $dark-color;
@@ -122,11 +124,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-lg;
+    gap: 2rem;
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    padding: $spacing-xxl $spacing-md;
+    padding: 4rem 1.5rem;
     backdrop-filter: blur(10px);
 
     &.open {

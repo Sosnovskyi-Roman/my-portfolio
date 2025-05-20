@@ -3,7 +3,9 @@ import styles from './Contact.module.scss';
 import { Button } from '../Button/Button';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ContactProps } from './types/Contact.types';
+import emailjs from '@emailjs/browser';
 import {
   LinkedInLogoIcon,
   GitHubLogoIcon,
@@ -12,20 +14,11 @@ import {
   ChatBubbleIcon,
 } from '@radix-ui/react-icons';
 
-interface ContactProps {
-  title?: string;
-  subtitle?: string;
-  email?: string;
-  phone?: string;
-  formspreeId?: string;
-}
-
 export const Contact = ({
   title = "Let's Connect",
   subtitle = 'Have a project in mind or want to discuss opportunities? Feel free to reach out!',
   email = 'roman97039703@gmail.com',
   phone = '+48 735 618 498',
-  formspreeId = 'your-formspree-id',
 }: ContactProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -40,6 +33,10 @@ export const Contact = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -50,30 +47,34 @@ export const Contact = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          to_email: email,
           message: formData.message,
-        }),
-      });
+        },
+      );
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
+      if (response.status !== 200) throw new Error('Failed to send email');
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('Email sending error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -82,28 +83,28 @@ export const Contact = ({
 
   return (
     <section className={styles.contact} id='contact' ref={ref}>
-      <div className={styles.contactContainer}>
+      <div className={styles.container}>
         <motion.div
-          className={styles.contactHeader}
+          className={styles.header}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.contactTitle}>{title}</h2>
-          <p className={styles.contactSubtitle}>{subtitle}</p>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.subtitle}>{subtitle}</p>
         </motion.div>
 
-        <div className={styles.contactContent}>
+        <div className={styles.content}>
           <motion.form
-            className={styles.contactForm}
+            className={styles.form}
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className={styles.formGroup}>
-              <label htmlFor='name' className={styles.formLabel}>
-                Name
+              <label htmlFor='name' className={styles.label}>
+                Your Name
               </label>
               <input
                 type='text'
@@ -111,15 +112,16 @@ export const Contact = ({
                 name='name'
                 value={formData.name}
                 onChange={handleChange}
-                className={styles.formInput}
+                className={styles.input}
                 required
                 minLength={2}
+                placeholder='Enter your name'
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor='email' className={styles.formLabel}>
-                Email
+              <label htmlFor='email' className={styles.label}>
+                Your Email
               </label>
               <input
                 type='email'
@@ -127,42 +129,59 @@ export const Contact = ({
                 name='email'
                 value={formData.email}
                 onChange={handleChange}
-                className={styles.formInput}
+                className={styles.input}
                 required
+                placeholder='Enter your email'
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor='message' className={styles.formLabel}>
-                Message
+              <label htmlFor='message' className={styles.label}>
+                Your Message
               </label>
               <textarea
                 id='message'
                 name='message'
                 value={formData.message}
                 onChange={handleChange}
-                className={styles.formTextarea}
+                className={styles.textarea}
                 rows={5}
                 required
                 minLength={10}
+                placeholder='Describe your project or proposal...'
               />
             </div>
 
             <motion.div
-              className={styles.formSubmit}
+              className={styles.submitWrapper}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button type='submit' variant='primary' size='lg' disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+              <Button
+                type='submit'
+                variant='primary'
+                size='lg'
+                disabled={isSubmitting}
+                aria-label={isSubmitting ? 'Sending message' : 'Send message'}
+              >
+                {isSubmitting ? (
+                  <span className={styles.loading}>
+                    <span className={styles.dot}>.</span>
+                    <span className={styles.dot}>.</span>
+                    <span className={styles.dot}>.</span>
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
               </Button>
             </motion.div>
 
             {submitStatus === 'success' && (
               <motion.div
-                className={styles.formSuccess}
+                className={styles.successMessage}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
               >
                 Thank you! Your message has been sent successfully.
               </motion.div>
@@ -170,70 +189,68 @@ export const Contact = ({
 
             {submitStatus === 'error' && (
               <motion.div
-                className={styles.formError}
+                className={styles.errorMessage}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
               >
-                Oops! Something went wrong. Please try again later.
+                Oops! Something went wrong. Please try again.
               </motion.div>
             )}
           </motion.form>
 
           <motion.div
-            className={styles.contactInfo}
+            className={styles.info}
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h3 className={styles.infoTitle}>Contact Information</h3>
-            <ul className={styles.infoList}>
-              <li className={styles.infoItem}>
-                <span className={styles.infoIcon}>
-                  <EnvelopeClosedIcon />
-                </span>
-                <a href={`mailto:${email}`} className={styles.infoLink}>
+            <ul className={styles.contactList}>
+              <li className={styles.contactItem}>
+                <EnvelopeClosedIcon className={styles.icon} />
+                <a href={`mailto:${email}`} className={styles.link}>
                   {email}
                 </a>
               </li>
-              <li className={styles.infoItem}>
-                <span className={styles.infoIcon}>
-                  <MobileIcon />
-                </span>
-                <a href={`tel:${phone.replace(/\D/g, '')}`} className={styles.infoLink}>
+              <li className={styles.contactItem}>
+                <MobileIcon className={styles.icon} />
+                <a href={`tel:${phone.replace(/\D/g, '')}`} className={styles.link}>
                   {phone}
                 </a>
               </li>
             </ul>
 
+            <h4 className={styles.socialTitle}>Connect with me</h4>
             <div className={styles.socialLinks}>
               <a
-                href='https://linkedin.com'
+                href='https://www.linkedin.com/in/roman-sosnovskyi-86743229a/'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={styles.socialLink}
                 aria-label='LinkedIn'
               >
-                <LinkedInLogoIcon />
+                <LinkedInLogoIcon className={styles.socialIcon} />
                 <span>LinkedIn</span>
               </a>
               <a
-                href='https://github.com'
+                href='https://github.com/Sosnovskyi-Roman'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={styles.socialLink}
                 aria-label='GitHub'
               >
-                <GitHubLogoIcon />
+                <GitHubLogoIcon className={styles.socialIcon} />
                 <span>GitHub</span>
               </a>
               <a
-                href='https://telegram.com'
+                href='https://t.me/your_telegram'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={styles.socialLink}
                 aria-label='Telegram'
               >
-                <ChatBubbleIcon />
+                <ChatBubbleIcon className={styles.socialIcon} />
                 <span>Telegram</span>
               </a>
             </div>
