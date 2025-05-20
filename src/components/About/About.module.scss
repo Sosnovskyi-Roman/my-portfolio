@@ -21,7 +21,9 @@
 .sectionContainer {
   max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding:
+    0 1,
+    5rem;
   position: relative;
   z-index: 1;
 }
@@ -31,13 +33,13 @@
   font-weight: 800;
   color: $dark-color;
   text-align: center;
-  margin-bottom: $spacing-xl;
+  margin-bottom: 3rem;
   position: relative;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -$spacing-md;
+    bottom: -1, 5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -50,14 +52,14 @@
 .aboutContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: $spacing-xl;
-  margin-top: $spacing-lg;
+  gap: 3rem;
+  margin-top: 2rem;
 }
 
 .aboutText {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: 1, 5rem;
 
   p {
     font-size: clamp(1rem, 1.25vw, 1.25rem);
@@ -93,13 +95,13 @@
 .aboutStats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-md;
+  gap: 1, 5rem;
 }
 
 .statItem {
   background: $white;
-  padding: $spacing-lg;
-  border-radius: $border-radius-lg;
+  padding: 2rem;
+  border-radius: -0.75rem;
   box-shadow: $shadow-sm;
   display: flex;
   flex-direction: column;
@@ -121,7 +123,7 @@
   font-weight: 800;
   color: $primary-color;
   line-height: 1;
-  margin-bottom: $spacing-xs;
+  margin-bottom: 0.5rem;
   background: linear-gradient(90deg, $primary-color, $primary-hover);
   -webkit-background-clip: text;
   background-clip: text;
@@ -137,12 +139,12 @@
 
 @media (max-width: $breakpoint-lg) {
   .about {
-    padding: $spacing-xl 0;
+    padding: 3rem 0;
   }
 
   .aboutContent {
     grid-template-columns: 1fr;
-    gap: $spacing-xl;
+    gap: 3rem;
   }
 
   .aboutStats {
@@ -156,7 +158,7 @@
   }
 
   .statItem {
-    padding: $spacing-md;
+    padding: 1, 5rem;
   }
 }
 
@@ -166,6 +168,6 @@
   }
 
   .sectionTitle {
-    margin-bottom: $spacing-lg;
+    margin-bottom: 2rem;
   }
 }
