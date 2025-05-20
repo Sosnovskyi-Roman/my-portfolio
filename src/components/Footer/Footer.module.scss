@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '@/styles/variables' as *;
 
 .footer {
@@ -67,7 +68,11 @@
   bottom: 1.5rem;
   width: 3rem;
   height: 3rem;
-  background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+  background: linear-gradient(
+    135deg,
+    $primary-color,
+    color.adjust($primary-color, $lightness: -10%)
+  );
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -127,6 +132,7 @@
     }
   }
 }
+
 @media (max-width: $breakpoint-md) {
   .footer {
     padding: 2rem 0;
